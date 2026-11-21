@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leonida Legend — GTA VI Trophy Guide &amp; Tracker</title>
+<meta name="description" content="The complete offline guide and tracker for all 55 Grand Theft Auto VI PlayStation 5 trophies: cited steps for every trophy, a roadmap to the platinum, missable flags, sources and a dispute audit.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="sunset-band" aria-hidden="true"></div>
+
+<header class="masthead">
+  <p class="kicker">Grand Theft Auto VI · PlayStation 5 · Offline Guide &amp; Tracker</p>
+  <h1>LEONIDA <span class="legend-word">LEGEND</span></h1>
+  <p class="tagline">Every one of the 55 trophies — official names, descriptions and grades — with a cited,
+  step-by-step guide, a roadmap to the platinum, and a tracker that remembers where you stopped.</p>
+  <div class="audit-strip" id="auditStrip" aria-label="Guide audit totals">
+    <span><strong id="statSteps">–</strong> cited steps</span>
+    <span><strong id="statSources">–</strong> named sources</span>
+    <span><strong id="statDisputes">–</strong> disputes resolved</span>
+    <span><strong id="statMissable">–</strong> missables flagged</span>
+  </div>
+</header>
+
+<section class="progress-panel" aria-label="Your progress">
+  <div class="progress-head">
+    <h2>Your road to the platinum</h2>
+    <p class="progress-numbers"><strong id="earnedCount">0</strong> / 55 earned ·
+    <span id="percentDone">0%</span> · Platinum ETA <strong id="etaLeft">–</strong></p>
+  </div>
+  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="55" aria-valuenow="0" id="progressBar">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  <div class="grade-tally" id="gradeTally" aria-label="Progress by grade"></div>
+  <div class="progress-actions">
+    <button type="button" id="exportBtn">Export progress</button>
+    <label class="import-label" for="importFile">Import progress</label>
+    <input type="file" id="importFile" accept="application/json,.json" hidden>
+    <button type="button" id="resetBtn" class="danger">Reset</button>
+  </div>
+</section>
+
+<nav class="view-tabs" aria-label="Guide sections">
+  <button type="button" class="tab active" data-view="guide">Trophy Guide</button>
+  <button type="button" class="tab" data-view="roadmap">Roadmap</button>
+  <button type="button" class="tab" data-view="sources">Sources</button>
+  <button type="button" class="tab" data-view="audit">Dispute Audit</button>
+</nav>
+
+<main>
+  <section id="view-guide" class="view active">
+    <div class="controls" role="search">
+      <input type="search" id="searchBox" placeholder="Search trophies, missions, places…" aria-label="Search trophies">
+      <div class="chip-row" id="kindChips" aria-label="Filter by kind">
+        <button type="button" class="chip active" data-kind="all">All</button>
+        <button type="button" class="chip" data-kind="story">Story</button>
+        <button type="button" class="chip" data-kind="missable">Missable</button>
+        <button type="button" class="chip" data-kind="collectibles">Collectibles</button>
+        <button type="button" class="chip" data-kind="activities">Activities</button>
+        <button type="button" class="chip" data-kind="online">Partner / Online</button>
+      </div>
+      <div class="control-row">
+        <label>Grade
+          <select id="gradeFilter">
+            <option value="all">All grades</option>
+            <option value="platinum">Platinum</option>
+            <option value="gold">Gold</option>
+            <option value="silver">Silver</option>
+            <option value="bronze">Bronze</option>
+          </select>
+        </label>
+        <label>Sort
+          <select id="sortSelect">
+            <option value="list">Official list order</option>
+            <option value="difficulty">Difficulty (easy first)</option>
+            <option value="difficulty-desc">Difficulty (hard first)</option>
+            <option value="time">Time (short first)</option>
+            <option value="name">Name A–Z</option>
+          </select>
+        </label>
+        <label class="toggle"><input type="checkbox" id="spoilerToggle"> Spoiler shield
+          <span class="hint">hides story trophies until earned</span></label>
+        <label class="toggle"><input type="checkbox" id="hideEarnedToggle"> Hide earned</label>
+      </div>
+      <p class="result-count" id="resultCount" aria-live="polite"></p>
+    </div>
+    <div class="trophy-grid" id="trophyGrid"></div>
+    <p class="empty-note" id="emptyNote" hidden>No trophies match those filters. Loosen a filter or clear the search.</p>
+  </section>
+
+  <section id="view-roadmap" class="view">
+    <h2 class="view-title">Roadmap to the Platinum</h2>
+    <p class="view-lede">Seven stages, in the order that wastes nothing: story first while the map opens, missables banked
+    before the finale, grinds grouped by the trips they share, and the 100% checklist closed last.
+    Stage times assume the cited routes in each trophy's guide.</p>
+    <div id="roadmapList"></div>
+  </section>
+
+  <section id="view-sources" class="view">
+    <h2 class="view-title">Sources</h2>
+    <p class="view-lede">Every step in every guide carries the number of the source it rests on. A source is cited, never copied:
+    the wording of each guide is this entry's own. Links open only when you follow them — the app itself fetches nothing.</p>
+    <ol class="source-list" id="sourceList"></ol>
+  </section>
+
+  <section id="view-audit" class="view">
+    <h2 class="view-title">Dispute Audit</h2>
+    <p class="view-lede">Where the community's references disagreed — a count, a window, a missable flag — the disagreement is
+    recorded here with the resolution this guide follows and the sources that settled it.</p>
+    <div id="disputeList"></div>
+  </section>
+</main>
+
+<footer class="colophon">
+  <p><strong>Leonida Legend</strong> — a fan-made guide for the official PlayStation 5 trophy list of Grand Theft Auto VI.
+  Trophy names, descriptions and grades are as PlayStation publishes them; every guide, step and flag is written for this entry and cited.
+  Not affiliated with Rockstar Games or PlayStation. No official artwork is used; the look is this guide's own.</p>
+  <p class="foot-small">Progress is stored only in your browser (localStorage). Export it before switching devices.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
